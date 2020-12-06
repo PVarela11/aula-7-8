@@ -23,6 +23,7 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.snackbar.Snackbar
+import pt.atp.bobi.EXTRA_USERNAME
 import pt.atp.bobi.R
 import java.io.File
 
@@ -44,6 +45,9 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<TextView>(R.id.tv_hello).text = getString(
+            R.string.welcome, requireActivity().intent!!.getStringExtra(EXTRA_USERNAME))
 
         view.findViewById<Button>(R.id.open_camera).setOnClickListener {
             openNativeCamera()
@@ -84,13 +88,9 @@ class HomeFragment : Fragment() {
     ) {
 
         if(requestCode == REQUEST_READ_STORAGE){
-
             if(permissions[0] == Manifest.permission.READ_EXTERNAL_STORAGE &&
                 grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                 startTimer()
-
-
             }
         } else {
 

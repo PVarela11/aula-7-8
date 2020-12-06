@@ -23,6 +23,27 @@
     <!-- Chat -->
     <string name="messages_input_hint">Say something nice!</string>
 
+    <!-- About -->
+    <string name="about">About</string>
+    <string name="about_copyright">Copyright © 2020\nAndroid Training Program, Portugal</string>
+    <string name="about_website">Website</string>
+    <string name="about_youtube">YouTube Channel</string>
+    <string name="about_email">E-mail</string>
+
+    <string name="about_share">Share</string>
+    <string name="about_twitter">Twitter</string>
+
+    <string name="about_authors">Authors</string>
+    <string name="about_almo">\@davilagrau</string>
+    <string name="about_cafonsomota">\@cafonsomota</string>
+    <string name="about_tallnato">\@tallnato</string>
+
+    <string name="about_libraries">Libraries</string>
+    <string name="about_android">Android</string>
+    <string name="about_retrofit"><a href="https://github.com/square/retrofit">Retrofit</a></string>
+    <string name="about_glide"><a href="https://github.com/bumptech/glide">glide</a></string>
+    <string name="about_icons8">icons8</string>
+
     <!-- Buttons -->
     <string name="open_camera">Open camera</string>
     <string name="open_details">Open details</string>

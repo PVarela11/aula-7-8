@@ -22,7 +22,7 @@ private const val TAG = "BreedsFragment"
 
 class BreedsFragment : Fragment() {
 
-    private val viewModel by viewModels<BreedsViewModel>() {
+    private val viewModel by viewModels<BreedsViewModel> {
         BreedsViewModelFactory((requireActivity().application as BobiApplication).repository)
     }
 

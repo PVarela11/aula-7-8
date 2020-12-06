@@ -7,14 +7,8 @@ plugins {
 
 android {
     signingConfigs {
-        debug {
-            storeFile file('/Users/carlosmota/Projects/GitHub/android-training-program/class-n/aula-6/06. Exercicios/credentials/debug.keystore')
-            storePassword 'android'
-            keyAlias 'android'
-            keyPassword 'android'
-        }
         release {
-            storeFile file('/Users/carlosmota/Projects/GitHub/android-training-program/class-n/aula-6/06. Exercicios/credentials/debug.keystore')
+            storeFile file('../credentials/release.keystore')
             storePassword 'android'
             keyAlias 'android'
             keyPassword 'android'
@@ -31,10 +25,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        signingConfig signingConfigs.debug
+        signingConfig signingConfigs.release
     }
     buildFeatures {
         viewBinding true
+        compose true
     }
     buildTypes {
         release {
@@ -42,18 +37,25 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion "1.0.0-alpha08"
+        kotlinCompilerVersion "$kotlin_version"
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     kotlinOptions {
         jvmTarget = '1.8'
+        useIR = true
     }
 }
 
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
@@ -63,7 +65,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0"
     implementation "androidx.activity:activity-ktx:1.1.0"
     implementation "androidx.fragment:fragment-ktx:1.2.5"
-    implementation "androidx.paging:paging-runtime:3.0.0-alpha03"
+    implementation "androidx.paging:paging-runtime-ktx:3.0.0-alpha09"
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
@@ -76,6 +78,12 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
+
+    implementation "androidx.compose.ui:ui:1.0.0-alpha08"
+    implementation "androidx.compose.foundation:foundation:1.0.0-alpha08"
+    implementation "androidx.ui:ui-tooling:1.0.0-alpha07"
+    implementation "androidx.compose.material:material:1.0.0-alpha08"
+
 
     implementation platform('com.google.firebase:firebase-bom:26.1.0')
 
