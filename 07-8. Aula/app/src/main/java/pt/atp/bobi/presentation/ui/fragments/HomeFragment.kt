@@ -6,7 +6,6 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -23,8 +22,10 @@ import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.google.android.material.snackbar.Snackbar
+import pt.atp.bobi.DEFAULT_IMAGE
 import pt.atp.bobi.EXTRA_USERNAME
 import pt.atp.bobi.R
+import pt.atp.bobi.presentation.ui.CameraActivity
 import java.io.File
 
 private const val TAG = "HomeFragment"
@@ -50,7 +51,7 @@ class HomeFragment : Fragment() {
             R.string.welcome, requireActivity().intent!!.getStringExtra(EXTRA_USERNAME))
 
         view.findViewById<Button>(R.id.open_camera).setOnClickListener {
-            openNativeCamera()
+            openCamera()
         }
 
         view.findViewById<Button>(R.id.show_dialog).setOnClickListener {
@@ -66,7 +67,7 @@ class HomeFragment : Fragment() {
         }
 
         Glide.with(this)
-            .load("https://github.com/android-training-program/aula-5/blob/master/imagens/fifi.jpg?raw=true")
+            .load(DEFAULT_IMAGE)
             .diskCacheStrategy(DiskCacheStrategy.ALL)
             .fitCenter()
             .into(view.findViewById(R.id.imageView))
@@ -100,19 +101,15 @@ class HomeFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == AppCompatActivity.RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
-            requireView().findViewById<ImageView>(R.id.imageView).setImageBitmap(imageBitmap)
+            val imageUri = data?.extras?.get("data") as Uri
+            requireView().findViewById<ImageView>(R.id.imageView).setImageURI(imageUri)
         }
 
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    /**
-     * Calling this method will open the default camera application.
-     */
-    private fun openNativeCamera() {
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(intent, REQUEST_IMAGE_CAPTURE)
+    private fun openCamera() {
+        startActivityForResult(Intent(context, CameraActivity::class.java), REQUEST_IMAGE_CAPTURE)
     }
 
     /**

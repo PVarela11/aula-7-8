@@ -37,21 +37,4 @@
         android:layout_centerInParent="true"
         app:buttonSize="wide"/>
 
-    <TextView
-        android:id="@+id/tv_error"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:textSize="15sp"
-        android:textColor="@color/colorSecondaryLight"/>
-
-    <CheckBox
-        android:id="@+id/cb_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:visibility="gone"
-        android:text="@string/action_save_credentials"
-        android:textColor="@color/colorPrimaryContrastText"/>
-
 </RelativeLayout>
